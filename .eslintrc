@@ -1,23 +1,50 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "env": {
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "standard",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "prettier",
+    "import-helpers"
   ],
   "rules": {
-    "class-methods-use-this": "off",
+    "prettier/prettier": "error",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          [
+            "module",
+            "absolute"
+          ],
+          "/^@/",
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ],
     "no-useless-constructor": "off",
-    "@typescript-eslint/keyword-spacing": "error",
-    "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-var-requires": "off",
-    "no-useless-escape": "off",
-    "prefer-rest-params": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", {
-      "argsIgnorePattern": "_"
-    }]
+    "no-new": "off",
+    "new-cap": "off",
+    "no-use-before-define": "off",
+    "camelcase": "off"
   }
 }

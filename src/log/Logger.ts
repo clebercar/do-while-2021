@@ -1,23 +1,25 @@
-import { yellow, magenta, red, blue } from 'colors'
+import { yellow, magenta, red, gray, green } from 'colors'
 
 import { ILogger } from './ILogger'
-import { Injectable } from 'utils/dependency-injection'
 
-@Injectable('logger')
 export default class Logger implements ILogger {
   public info(message: string) {
-    console.info(blue(`[INFO] ${message}`))
+    console.log(`${green('[INFO]')} ${this.time} ${message}`)
   }
 
   public error(message: string) {
-    console.error(red(`[ERROR] ${message}`))
+    console.log(`${red('[ERROR]')} ${this.time} ${message}`)
   }
 
   public debug(message: string) {
-    console.log(magenta(`[DEBUG] ${message}`))
+    console.log(`${magenta('[DEBUG]')} ${this.time} ${message}`)
   }
 
   public warn(message: string) {
-    console.log(yellow(`[WARN] ${message}`))
+    console.log(`${yellow('[WARN]')} ${this.time} ${message}`)
+  }
+
+  private get time() {
+    return gray(`${new Date().toLocaleString()}`)
   }
 }
